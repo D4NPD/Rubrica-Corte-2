@@ -41,7 +41,6 @@ const Formulario = () => {
           }
     }
     calcularValorUnitario()
-
     const calcularTotal = () =>{
         if(divisa === 'COP'){
             total = precio * numManillas * 5000
@@ -51,7 +50,6 @@ const Formulario = () => {
     }
 
     calcularTotal()
-
     return (
         <div>
             <div className="container col-4 mt-3">
