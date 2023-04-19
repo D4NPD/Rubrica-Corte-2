@@ -8,6 +8,11 @@ const Formulario = () => {
     const [divisa, setDivisa] = useState('')
     let precio = 0
     let total = 0
+
+    const compra = async e =>{
+        e.preventDefault()
+        
+    }
     
     const calcularValorUnitario = () =>{
         if (material === "cuero") {
