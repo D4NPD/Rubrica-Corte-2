@@ -1,4 +1,6 @@
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
+import {addDoc, collection} from 'firebase/firestore'
+import {db} from '../firebase.js'
 
 const Formulario = () => {
     const [numManillas, setNumManillas] = useState(1);
@@ -28,7 +30,16 @@ const Formulario = () => {
 
     }
 
-    
+    const reiniciar = e =>{
+        e.preventDefault()
+        setNumManillas(1)
+        setMaterial('')
+        setDije('')
+        setTipo('')
+        setDivisa('')
+        setComprado(false)
+
+    }
     
     const calcularValorUnitario = () =>{
         if (material === "cuero") {
@@ -75,7 +86,7 @@ const Formulario = () => {
         <div>
             <div className="container col-4 mt-3">
                 <h1>Compra de Manillas</h1>
-                <form>
+                <form onSubmit={comprado ? reiniciar : compra}>
                     <div className="mb-3">
                         <label htmlFor="material" className="form-label">Material</label>
                         <div className="form-check">
@@ -132,7 +143,7 @@ const Formulario = () => {
                         </div>
                     </div>
                     <div className="mb-3">
-                        <button type="submit" className="btn btn-primary">Comprar</button>
+                        <button type="submit" className="btn btn-primary">{comprado ? 'Hacer otra compra' : 'Comprar'}</button>
                     </div>
                 </form>
             </div>
