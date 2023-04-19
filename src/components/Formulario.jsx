@@ -6,13 +6,29 @@ const Formulario = () => {
     const [dije, setDije] = useState('');
     const [tipo, setTipo] = useState('');
     const [divisa, setDivisa] = useState('')
+    const [comprado, setComprado] = useState(false)
     let precio = 0
     let total = 0
 
     const compra = async e =>{
         e.preventDefault()
-        
+        try {
+            await addDoc(collection(db,'registro_manillas'),{
+                numManillas,
+                material,
+                dije,
+                tipo,
+                divisa
+            })
+            setComprado(true)
+            
+        } catch (error) {
+            console.log(error)
+        }
+
     }
+
+    
     
     const calcularValorUnitario = () =>{
         if (material === "cuero") {
